@@ -42,4 +42,8 @@ public final class InterfaceMaker {
         return new FileWriter(pathHelper.toAbsolutePath().toString()+"//src//"+this.inputDirectory+"//"+name);
     }
 
+    public Path getAbsFilePath(String fileName) {
+        return Paths.get(pathHelper.toAbsolutePath()+"//src//"+this.inputDirectory+"//"+fileName);
+    }
+
 }
