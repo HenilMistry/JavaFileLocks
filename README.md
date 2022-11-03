@@ -40,14 +40,14 @@ Basically, what do you mean by locks? The lock simply means restriction on some 
 - ### Acquire Shared Lock
 
     
-    // create an object of file.
-    File file = new File(path);
-    // File input stream
-    FileInputStream fIn = new FileInputStream(file);
-    // get channel...
-    FileChannel fChannel = fIn.getChannel();
-    // acquire lock...
-    FileLock lock = fChannel.lock(0, Long.MAX_VALUE, true);
+      // create an object of file.
+      File file = new File(path);
+      // File input stream
+      FileInputStream fIn = new FileInputStream(file);
+      // get channel...
+      FileChannel fChannel = fIn.getChannel();
+      // acquire lock...
+      FileLock lock = fChannel.lock(0, Long.MAX_VALUE, true);
 
 - ### Acquire Exclusive Lock
 
