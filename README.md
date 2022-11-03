@@ -8,12 +8,12 @@ I hope this poster will help you to understand the whole topic in one go.
 
 # Index
 - [Theory](#Theory)
-  - Locks
-    - Types of locks
-      - Shared
-      - Exclusive
-    - Purpose
-- How to achieve in Java?
+  - [Locks](#Locks)
+    - [Types of locks](#Types of locks?)
+      - [Shared](#Shared Lock)
+      - [Exclusive](#Exclusive Lock)
+    - [Purpose](#Purpose?)
+- [How to achieve in Java?](#How to?)
 
 Theory
 ======
