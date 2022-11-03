@@ -3,7 +3,9 @@ This repository contains the demonstration of Java File Locks with explanation a
 
 # Poster
 I hope this poster will help you to understand the whole topic in one go.
-![Locks](https://user-images.githubusercontent.com/77051908/199794089-752bba45-5dcb-49fe-9545-35afc93e03d0.jpg)
+
+<img height=500
+src="https://user-images.githubusercontent.com/77051908/199794089-752bba45-5dcb-49fe-9545-35afc93e03d0.jpg">
 
 
 # Index
