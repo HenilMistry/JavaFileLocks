@@ -1,13 +1,10 @@
 import Helper.InterfaceMaker;
-import Locks.ExclusiveLock;
-import Locks.SharedLock;
 
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 public class Main {
 
@@ -15,6 +12,8 @@ public class Main {
     public static File file = ifm.getFileObj("MySelf.txt");
 
     public static void writeToFile() {
+        // logic and steps are same as shared lock...
+        // just it's write operation...
         try {
             FileOutputStream fileOut = new FileOutputStream(file);
 
@@ -23,10 +22,7 @@ public class Main {
                 FileLock exclusiveLock = inputChannel.lock(0,Long.MAX_VALUE,false);
 
                 try {
-//                    BufferedWriter writer = new BufferedWriter(ifm.getWritableFile("MySelf.txt"));
-//                    writer.append("This is happy family!");
-//                    writer.close();
-                    inputChannel.write(ByteBuffer.wrap("This is happy family again".getBytes(StandardCharsets.UTF_8)));
+                    inputChannel.write(ByteBuffer.wrap("This is happy family".getBytes(StandardCharsets.UTF_8)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -45,17 +41,44 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ExclusiveLock SXLock = new ExclusiveLock("Files\\","MySelf.txt");
-        SXLock.acquireSharedLock();
+        try {
+            // get the file input stream...
+            FileInputStream fileIn = new FileInputStream(file);
 
-        SXLock.readWholeFile();
-        SXLock.acquireExclusiveLock();
-        SXLock.writeToFile("This is me henil!");
+            // from stream, get the channel to lock and read...
+            FileChannel channel = fileIn.getChannel();
+            // make a shared lock...
+            FileLock sharedLock = channel.lock(0,Long.MAX_VALUE, true);
 
-        SXLock.releaseSharedLock();
+            // scanner to read from inout stream...
+            BufferedReader scan = new BufferedReader(new InputStreamReader(fileIn));
+            // reading whole file...
+            String data = scan.readLine();
+            while (data!=null) {
+                System.out.println(data);
+                data = scan.readLine();
+            }
 
-        SXLock.acquireExclusiveLock();
-        SXLock.writeToFile("This is me henil!");
-        SXLock.releaseExclusiveLock();
+            // try to write by making request for exclusive lock...
+            // it will throw "OverlappingFileLockException"...
+            writeToFile();
+
+            // release shared lock, close all streams and chnnels...
+            sharedLock.release();
+            scan.close();
+            channel.close();
+            fileIn.close();
+
+            // try to write again...
+            writeToFile();
+
+        } catch (FileNotFoundException e) {
+            // for input stream...
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            // for FileLock...
+            throw new RuntimeException(e);
+        }
+
     }
 }
