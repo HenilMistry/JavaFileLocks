@@ -13,7 +13,7 @@ I hope this poster will help you to understand the whole topic in one go.
       - [Shared](#Locks/TypesOfLocks?/SharedLock)
       - [Exclusive](#Locks/TypesOfLocks?/ExclusiveLock)
     - [Purpose](#Locks/Purpose?)
-- [How to achieve in Java?](#HowTo?)
+- [How to achieve in Java?](#HowTo)
 
 Theory
 ======
@@ -34,7 +34,7 @@ Basically, what do you mean by locks? The lock simply means restriction on some 
     reads, any other thread should not read that file or write to that file. While we want to perform write operation then also
     it should be taken care so, we will take help of Exclusive Lock.
 
-# HowTo?
+# HowTo
  Let's have some coding in Java.
 
 - ### Acquire Shared Lock
