@@ -9,10 +9,10 @@ I hope this poster will help you to understand the whole topic in one go.
 # Index
 - [Theory](#Theory)
   - [Locks](#Locks)
-    - [Types of locks](#Locks/TypesOfLocks?)
-      - [Shared](#Locks/TypesOfLocks?/SharedLock)
-      - [Exclusive](#Locks/TypesOfLocks?/ExclusiveLock)
-    - [Purpose](#Locks/Purpose?)
+    - [Types of locks](#Locks/TypesOfLocks)
+      - [Shared](#Locks/TypesOfLocks/SharedLock)
+      - [Exclusive](#Locks/TypesOfLocks/ExclusiveLock)
+    - [Purpose](#Locks/Purpose)
 - [How to achieve in Java?](#HowTo)
 
 Theory
@@ -21,7 +21,7 @@ Theory
 ## Locks
 Basically, what do you mean by locks? The lock simply means restriction on some action. Here you can consider that the
   **"some action"** refers to File operations such as **"read"** or **"write"**.
-  - ### TypesOfLock?
+  - ### TypesOfLock
     There are mainly two types of lock, represented in **top left corner** of the poster. One is **shared lock** and other
     is **exclusive lock**. They are often referred as **"read lock"** and **"write lock"** respectively.
     - #### SharedLock
@@ -29,7 +29,7 @@ Basically, what do you mean by locks? The lock simply means restriction on some 
     - #### ExclusiveLock
         This lock will allow you to perform write and read both operation on this file.
   
-  - ### Purpose?
+  - ### Purpose
     Together they both helps to ensure data integrity. Suppose when some thread is reading the file, the time until it
     reads, any other thread should not read that file or write to that file. While we want to perform write operation then also
     it should be taken care so, we will take help of Exclusive Lock.
